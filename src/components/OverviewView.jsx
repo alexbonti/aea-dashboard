@@ -50,6 +50,22 @@ export function OverviewView() {
 
     return (
         <div className="space-y-6 md:space-y-8">
+            {/* Welcome Section */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="bg-card border border-border p-6 rounded-xl shadow-lg"
+            >
+                <h2 className="text-xl md:text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Welcome to the AEA Dashboard</h2>
+                <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
+                    The AEA program is a strategic investment initiative designed to turn high-potential Australian research into sovereign industrial capabilities. It focuses on projects that drive economic growth, social well-being, and environmental sustainability.
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground">
+                    To know more, visit <a href="https://www.aea.gov.au/" className="text-blue-400 hover:underline">https://www.aea.gov.au/</a> or email <a href="mailto:alessio.bonti@rmit.edu.au" className="text-blue-400 hover:underline">Alessio Bonti alessio.bonti@rmit.edu.au</a>.
+                </p>
+            </motion.div>
+
             <div className="px-2 md:px-0">
                 <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Executive Summary</h2>
                 <p className="text-sm md:text-base text-muted-foreground mt-2 max-w-2xl">Strategic overview of the {formatCurrency(data.meta.totalFunding)} research investment portfolio.</p>
