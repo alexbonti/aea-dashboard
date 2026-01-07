@@ -35,70 +35,70 @@ export function ClusterView({ clusterName }) {
 
     return (
         <div className="space-y-6">
-            <div className="bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-border rounded-xl p-8">
-                <h2 className="text-3xl font-bold text-white mb-3">{cluster.name}</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">{cluster.description}</p>
+            <div className="bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-border rounded-xl p-6 md:p-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{cluster.name}</h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{cluster.description}</p>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
                     <div className="bg-background/40 p-4 rounded-lg backdrop-blur-sm">
-                        <p className="text-sm text-gray-400">Total Investment</p>
-                        <p className="text-2xl font-bold text-white">{formatCurrency(cluster.totalFunding)}</p>
+                        <p className="text-xs text-gray-400">Total Investment</p>
+                        <p className="text-xl md:text-2xl font-bold text-white">{formatCurrency(cluster.totalFunding)}</p>
                     </div>
                     <div className="bg-background/40 p-4 rounded-lg backdrop-blur-sm">
-                        <p className="text-sm text-gray-400">Projects</p>
-                        <p className="text-2xl font-bold text-white">{cluster.projectCount}</p>
+                        <p className="text-xs text-gray-400">Projects</p>
+                        <p className="text-xl md:text-2xl font-bold text-white">{cluster.projectCount}</p>
                     </div>
                     <div className="bg-background/40 p-4 rounded-lg backdrop-blur-sm">
-                        <p className="text-sm text-gray-400">Avg. Funding</p>
-                        <p className="text-2xl font-bold text-white">{formatCurrency(cluster.totalFunding / cluster.projectCount)}</p>
+                        <p className="text-xs text-gray-400">Avg. Funding</p>
+                        <p className="text-xl md:text-2xl font-bold text-white">{formatCurrency(cluster.totalFunding / cluster.projectCount)}</p>
                     </div>
                 </div>
             </div>
 
             {/* Search and Filters */}
-            <div className="space-y-4">
+            <div className="space-y-4 px-1 md:px-0">
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
                         type="text"
-                        placeholder="Search projects, recipients, universities, or keywords..."
+                        placeholder="Search projects, recipients, or keywords..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-2.5 md:py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
                     />
                 </div>
 
-                <div className="flex flex-wrap gap-3">
-                    <div className="flex items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
+                <div className="flex overflow-x-auto pb-2 -mx-1 md:mx-0 px-1 md:px-0 scrollbar-hide gap-3">
+                    <div className="flex shrink-0 items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
                         <Filter className="w-3.5 h-3.5 text-blue-400" />
                         <select
                             value={programFilter}
                             onChange={(e) => setProgramFilter(e.target.value)}
-                            className="bg-transparent text-xs text-gray-300 focus:outline-none"
+                            className="bg-transparent text-xs text-gray-300 focus:outline-none cursor-pointer"
                         >
                             <option value="all">All Programs</option>
                             {programs.filter(p => p !== 'all').map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                     </div>
 
-                    <div className="flex items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
+                    <div className="flex shrink-0 items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
                         <MapPin className="w-3.5 h-3.5 text-blue-400" />
                         <select
                             value={uniFilter}
                             onChange={(e) => setUniFilter(e.target.value)}
-                            className="bg-transparent text-xs text-gray-300 focus:outline-none max-w-[200px]"
+                            className="bg-transparent text-xs text-gray-300 focus:outline-none cursor-pointer max-w-[150px] md:max-w-[200px]"
                         >
-                            <option value="all">All Universities</option>
+                            <option value="all">All Institutions</option>
                             {universities.filter(u => u !== 'all').map(u => <option key={u} value={u}>{u}</option>)}
                         </select>
                     </div>
 
-                    <div className="flex items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
+                    <div className="flex shrink-0 items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-lg">
                         <DollarSign className="w-3.5 h-3.5 text-blue-400" />
                         <select
                             value={yearFilter}
                             onChange={(e) => setYearFilter(e.target.value)}
-                            className="bg-transparent text-xs text-gray-300 focus:outline-none"
+                            className="bg-transparent text-xs text-gray-300 focus:outline-none cursor-pointer"
                         >
                             <option value="all">All Years</option>
                             {years.filter(y => y !== 'all').map(y => <option key={y} value={y}>{y}</option>)}
@@ -113,9 +113,9 @@ export function ClusterView({ clusterName }) {
                                 setUniFilter('all');
                                 setYearFilter('all');
                             }}
-                            className="text-xs text-blue-400 hover:text-blue-300 transition-colors px-2"
+                            className="shrink-0 text-xs text-blue-400 hover:text-blue-300 transition-colors px-2"
                         >
-                            Clear Filters
+                            Clear
                         </button>
                     )}
                 </div>
@@ -130,7 +130,7 @@ export function ClusterView({ clusterName }) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="bg-card border border-border p-5 rounded-lg hover:border-blue-500/50 hover:bg-blue-900/10 transition-all group flex flex-col h-full"
+                        className="bg-card border border-border p-4 md:p-5 rounded-lg hover:border-blue-500/50 hover:bg-blue-900/10 transition-all group flex flex-col h-full"
                     >
                         <div className="flex justify-between items-start gap-4 mb-3">
                             <div className="flex flex-col gap-1">
@@ -146,26 +146,26 @@ export function ClusterView({ clusterName }) {
                             </span>
                         </div>
 
-                        <h3 className="font-semibold text-white mb-2 line-clamp-2 group-hover:text-blue-300 transition-colors">
+                        <h3 className="font-semibold text-white text-sm md:text-base mb-2 line-clamp-2 group-hover:text-blue-300 transition-colors">
                             {project.title}
                         </h3>
 
                         <div className="space-y-1.5 mb-4">
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                 <MapPin className="w-3 h-3 text-blue-400" />
-                                <span className="text-gray-300">{project.university}</span>
+                                <span className="text-gray-300 line-clamp-1">{project.university}</span>
                             </div>
                             {project.recipient && (
                                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                     <div className="w-3 h-3 flex items-center justify-center">
                                         <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
                                     </div>
-                                    <span className="text-purple-300/80">{project.recipient}</span>
+                                    <span className="text-purple-300/80 line-clamp-1">{project.recipient}</span>
                                 </div>
                             )}
                         </div>
 
-                        <p className="text-sm text-muted-foreground line-clamp-3 mt-auto">
+                        <p className="text-xs md:text-sm text-muted-foreground line-clamp-3 mt-auto">
                             {project.summary}
                         </p>
                     </motion.div>
@@ -175,7 +175,7 @@ export function ClusterView({ clusterName }) {
 
             {filteredProjects.length === 0 && (
                 <div className="text-center py-20 text-muted-foreground">
-                    No projects found for "{searchTerm}"
+                    No projects found
                 </div>
             )}
         </div>
